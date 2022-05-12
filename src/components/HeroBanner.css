@@ -1,0 +1,46 @@
+.flex{
+    display: flex;
+}
+.row{
+    flex-direction: row;
+}
+.column{
+    flex-direction: column;
+}
+.align-center{
+    align-items: center;
+}
+.align-base{
+    align-items: baseline;
+}
+.align-end{
+    align-items: end;
+}
+.justify-space{
+    justify-content: space-around;
+}
+.align-space{
+    align-items: space-around;
+}
+.justify-center{
+    justify-content: center;
+}
+.capitalize{
+    text-transform: capitalize;
+}
+
+.hero-body{
+    margin: 25px;
+    border: 1px black solid;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3)
+}
+
+.hero-body h3{
+    margin: 8px;
+}
+
+.hero-container{
+    width: 100%;
+}
