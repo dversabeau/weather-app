@@ -2,13 +2,13 @@ import './PrevisionCard.css'
 
 function PrevisionCard(props) {
 
-  const { weather } = props;
-  console.log('weather card', weather)
+  const { list } = props;
+  console.log('list', list)
 
 
   return (
     <div className='flex column align-center prevision-card-body'>
-      {/* <p>{weather.weather[0].description}</p> */}
+      {/* {list[0][0].weather[0].description} */}
     </div>
   );
 

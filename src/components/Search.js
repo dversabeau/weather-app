@@ -10,6 +10,9 @@ function Search(props) {
                 type='text'
                 className='search'
 
+
+
+
                 value={search}
                 onChange={(e) => handleInput(e)}
             />

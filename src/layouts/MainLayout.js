@@ -42,8 +42,6 @@ function MainLayout(props) {
 
   const weatherToday = apiData.list ? apiData.list[0] : '';
   const weatherForcast = apiData ? apiData.list : '';
-  
-  // console.log('weatherForecast', weatherForcast)
 
   return (
     <div>
