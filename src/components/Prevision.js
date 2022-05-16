@@ -2,15 +2,14 @@ import { tab } from '@testing-library/user-event/dist/tab';
 import { useEffect, useState } from 'react';
 import './Prevision.css'
 import PrevisionCard from './PrevisonCard';
+import moment from 'moment';
 
 function Prevision(props) {
 
     const { list } = props;
-    const current = new Date();
-    const today = current.getFullYear() + '-' + (current.getMonth.length > 2 ? (current.getMonth() + 1) : ('0' + (current.getMonth() + 1))) + '-' + current.getDate()
     let t_date = '';
-    const t_array = [];
-    const [ t_arrayGlobal, set_tArrayGlobal ] = useState([]);
+    let t_array = [];
+    let [tArrayGlobal, setTArrayGlobal] = useState([]);
 
     const prevCond = () => {
 
@@ -20,31 +19,30 @@ function Prevision(props) {
 
                 // Si t_date n'existe pas il prend la date du premier item
                 if (t_date === '') t_date = item.dt_txt.substring(0, 10);
+                // console.log(t_date)
 
                 // Si t_date et la date de l'item sont equivalente alors on push l'item
                 // dans t_array
                 if (t_date.substring(0, 10) === item.dt_txt.substring(0, 10)) {
 
+                    // console.log('item', item)
                     t_array.push(item)
 
-                    console.log('t_array', t_array)
-
-                    // Si la t_date est différente d'item alors on change t_date pour la date d'item
-                    // puis on push une copie du tableau temporaire dans le tableau general et 
-                    // on réinitialise t_array
-                }
-
-                if (t_date.substring(0, 10) !== item.dt_txt.substring(0, 10)) {
-                    
+                    // console.log('t_array'+` ${item.dt_txt.substring(0, 10)}`, t_array)
+                } else if (t_date.substring(0, 10) !== item.dt_txt.substring(0, 10)) {
                     t_date = item.dt_txt.substring(0, 10);
-                    set_tArrayGlobal(t_arrayGlobal => [...t_arrayGlobal, ...t_array])
-                    t_array.length = 0;
+
+                    let updatedTArrayGlobal = tArrayGlobal.concat([t_array]);
+                    console.log('updated', updatedTArrayGlobal)
+
+                    setTArrayGlobal(tArrayGlobal => [...tArrayGlobal, ...updatedTArrayGlobal]);
+
+                    console.log('tArrayGlobal dans la condition', typeof tArrayGlobal, tArrayGlobal)
+                    t_array = [];
                     t_array.push(item);
                 }
-                
             })
 
-            console.log('t_arrayGlobal', t_arrayGlobal)
         }
     }
 
@@ -52,20 +50,20 @@ function Prevision(props) {
         prevCond()
     }, [list])
 
-    // useEffect(() => {
-    // }, [t_arrayGlobal])
 
     return (
-        <div>
-           { console.log('ciicicci', t_arrayGlobal) }
+        <div className='prevision-body'>
+            {tArrayGlobal && tArrayGlobal.map((item, index) => {
+                { console.log('tArrayGlobal dans le render', tArrayGlobal) }
 
-            {t_arrayGlobal && t_arrayGlobal.map((item, index) => {
                 return (
-                    <PrevisionCard key={index} list={item} />
+                    <>
+                        <h3>{moment(item[0].dt_txt).format('DD/MM/YYYY')}</h3>
+                        <PrevisionCard key={index} list={item} />
+                    </>
                 )
             })}
         </div>
     )
 }
-
 export default Prevision;

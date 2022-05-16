@@ -3,12 +3,23 @@ import './PrevisionCard.css'
 function PrevisionCard(props) {
 
   const { list } = props;
-  console.log('list', list)
+  console.log('list previsioncard', list)
 
 
   return (
-    <div className='flex column align-center prevision-card-body'>
-      {/* {list[0][0].weather[0].description} */}
+    <div className='flex align-center prevision-card-body'>
+      {
+        list.length > 0 && list.map((item, index) => {
+
+          return (
+            <div key={index} className='prevision-card-item'>
+              <h4>{item.dt_txt.substring(11, 16)}</h4>
+              <p>{item.weather[0].description}</p>
+              <img src={`http://openweathermap.org/img/wn/${item.weather[0].icon}.png`}></img>
+            </div>
+          )
+        })
+      }
     </div>
   );
 

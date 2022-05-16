@@ -30,6 +30,21 @@
 }
 
 .prevision-card-body{
-  width: 100%;
-  height: 50px;
+  margin: 25px;
+  border: 1px black solid;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  overflow-x: scroll;
+}
+
+.prevision-card-item{
+  display: flex;
+  flex-direction: column;
+  margin: 25px;
+  min-width: 50px;
+}
+
+p{
+  font-size: 16px;
 }
