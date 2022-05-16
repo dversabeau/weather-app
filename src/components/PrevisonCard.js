@@ -15,7 +15,7 @@ function PrevisionCard(props) {
             <div key={index} className='prevision-card-item'>
               <h4>{item.dt_txt.substring(11, 16)}</h4>
               <p>{item.weather[0].description}</p>
-              <img src={`http://openweathermap.org/img/wn/${item.weather[0].icon}.png`}></img>
+              <img src={`https://openweathermap.org/img/wn/${item.weather[0].icon}.png`}></img>
             </div>
           )
         })

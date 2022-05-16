@@ -12,7 +12,7 @@ function HeroBanner(props) {
             { weather && (
                 <div className='flex row align-end hero-container justify-space'>
                 <div className='flex column align-center'>
-                    <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}.png`}></img>
+                    <img src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}.png`}></img>
                     <span className='capitalize'>{weather.weather[0].description}</span>
                 </div>
                 <div className='flex column align-center'>
