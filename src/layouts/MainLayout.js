@@ -33,11 +33,13 @@ function MainLayout(props) {
   }
 
   useEffect(() => {
-    getData()
+    getData();
+    setSearch('');
   }, []);
 
   const handleSubmit = () => {
     getData();
+    setSearch('');
   }
 
   const weatherToday = apiData.list ? apiData.list[0] : '';

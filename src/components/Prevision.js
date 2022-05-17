@@ -19,7 +19,6 @@ function Prevision(props) {
 
                 // Si t_date n'existe pas il prend la date du premier item
                 if (t_date === '') t_date = item.dt_txt.substring(0, 10);
-                // console.log(t_date)
 
                 // Si t_date et la date de l'item sont equivalente alors on push l'item
                 // dans t_array
@@ -33,11 +32,9 @@ function Prevision(props) {
                     t_date = item.dt_txt.substring(0, 10);
 
                     let updatedTArrayGlobal = tArrayGlobal.concat([t_array]);
-                    console.log('updated', updatedTArrayGlobal)
 
                     setTArrayGlobal(tArrayGlobal => [...tArrayGlobal, ...updatedTArrayGlobal]);
 
-                    console.log('tArrayGlobal dans la condition', typeof tArrayGlobal, tArrayGlobal)
                     t_array = [];
                     t_array.push(item);
                 }
@@ -54,13 +51,12 @@ function Prevision(props) {
     return (
         <div className='prevision-body'>
             {tArrayGlobal && tArrayGlobal.map((item, index) => {
-                { console.log('tArrayGlobal dans le render', tArrayGlobal) }
 
                 return (
-                    <>
+                    <div key={index}>
                         <h3>{moment(item[0].dt_txt).format('DD/MM/YYYY')}</h3>
-                        <PrevisionCard key={index} list={item} />
-                    </>
+                        <PrevisionCard list={item} />
+                    </div>
                 )
             })}
         </div>
