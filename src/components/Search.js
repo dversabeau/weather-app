@@ -3,7 +3,6 @@ import './Search.css';
 function Search(props) {
 
     const { search, handleInput, handleSubmit } = props;
-    console.log('search', search)
 
     return (
         <div className='search-body'>

@@ -7,7 +7,7 @@ function HeroBanner(props) {
 
     return (
         <div className='flex column align-center hero-body'>
-            <h3>Aujourd'hui</h3>
+            <h3>En ce moment</h3>
             
             { weather && (
                 <div className='flex row align-end hero-container justify-space'>

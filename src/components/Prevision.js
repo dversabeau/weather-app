@@ -9,10 +9,12 @@ function Prevision(props) {
     const { list } = props;
     let t_date = '';
     let t_array = [];
+    let updatedTArrayGlobal = [];
     let [tArrayGlobal, setTArrayGlobal] = useState([]);
 
     const prevCond = () => {
-
+        // setTArrayGlobal([]);
+            
         if (list && list.length > 0) {
 
             list.map((item) => {
@@ -31,7 +33,7 @@ function Prevision(props) {
                 } else if (t_date.substring(0, 10) !== item.dt_txt.substring(0, 10)) {
                     t_date = item.dt_txt.substring(0, 10);
 
-                    let updatedTArrayGlobal = tArrayGlobal.concat([t_array]);
+                    updatedTArrayGlobal = tArrayGlobal.concat([t_array]);
 
                     setTArrayGlobal(tArrayGlobal => [...tArrayGlobal, ...updatedTArrayGlobal]);
 
@@ -44,6 +46,10 @@ function Prevision(props) {
     }
 
     useEffect(() => {
+        tArrayGlobal = [];
+        updatedTArrayGlobal = [];
+        t_array = [];
+        console.log('useeffect',tArrayGlobal, updatedTArrayGlobal, t_array)
         prevCond()
     }, [list])
 
@@ -51,10 +57,14 @@ function Prevision(props) {
     return (
         <div className='prevision-body'>
             {tArrayGlobal && tArrayGlobal.map((item, index) => {
+                console.log('taG render', tArrayGlobal)
+                console.log('render updated', updatedTArrayGlobal)
+                console.log('render tarray', t_array)
+
 
                 return (
                     <div key={index}>
-                        <h3>{moment(item[0].dt_txt).format('DD/MM/YYYY')}</h3>
+                        <h3>{index === 0 ? 'Plus tard dans la journée' : moment(item[0].dt_txt).format('DD/MM/YYYY')}</h3>
                         <PrevisionCard list={item} />
                     </div>
                 )
