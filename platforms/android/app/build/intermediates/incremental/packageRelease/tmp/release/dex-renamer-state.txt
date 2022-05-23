@@ -1,0 +1,4 @@
+#Fri May 20 14:23:48 CEST 2022
+base.0=/home/cda1/weather-app/platforms/android/app/build/intermediates/dex/release/mergeDexRelease/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
