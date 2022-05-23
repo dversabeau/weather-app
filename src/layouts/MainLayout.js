@@ -4,13 +4,14 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import HeroBanner from '../components/HeroBanner';
 import Prevision from '../components/Prevision';
+import { useDispatch, useSelector } from 'react-redux';
+import { setApiData } from "../feature/apiData.slice";
+import { setSearch } from "../feature/search.slice";
 
 
-function MainLayout(props) {
-
-  const [apiData, setApiData] = useState({});
-  const [search, setSearch] = useState('Le Mans');
-
+function MainLayout() {
+  const dispatch = useDispatch();
+  const search = useSelector((state) => state.search.search)
 
   const apiKey = process.env.REACT_APP_API_KEY;
   const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?`
@@ -19,45 +20,26 @@ function MainLayout(props) {
     + `&units=metric`
     + `&appid=${apiKey}`;
 
-  const handleInput = (e) => {
-    setSearch(e.target.value);
-  };
-
   function getData() {
     axios
       .get(apiUrl)
-      .then((res) => {
-        setApiData(res.data);
-      })
+      .then((res) => dispatch(setApiData(res.data)))
       .catch((err) => console.log(err));
   }
 
   useEffect(() => {
     getData();
-    setSearch('');
+    dispatch(setSearch(''));
   }, []);
 
-  const handleSubmit = () => {
-    getData();
-    setSearch('');
-  }
-
-  const weatherToday = apiData.list ? apiData.list[0] : '';
-  const weatherForcast = apiData ? apiData.list : '';
 
   return (
     <div>
-      <HeroBanner
-        weather={weatherToday}
-      />
+      <HeroBanner />
       <Search
-        search={search}
-        handleInput={handleInput}
-        handleSubmit={handleSubmit}
+        getData={getData}
       />
-      <Prevision
-        list={weatherForcast}
-      />
+      <Prevision />
     </div>
   )
 }
