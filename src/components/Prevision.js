@@ -9,7 +9,6 @@ function Prevision() {
     const apiData = useSelector((state) => state.apiData.apiData);
     let t_date = '';
     let t_array = [];
-    let updatedTArrayGlobal = [];
     let [tArrayGlobal, setTArrayGlobal] = useState([]);
 
     const prevCond = () => {
@@ -32,7 +31,7 @@ function Prevision() {
                 } else if (t_date !== item.dt_txt.substring(0, 10)) {
                     t_date = item.dt_txt.substring(0, 10);
 
-                    updatedTArrayGlobal = tArrayGlobal.concat([t_array]);
+                    let updatedTArrayGlobal = tArrayGlobal.concat([t_array]);
 
                     setTArrayGlobal(tArrayGlobal => [...tArrayGlobal, ...updatedTArrayGlobal]);
 
@@ -44,10 +43,6 @@ function Prevision() {
     }
 
     useEffect(() => {
-        tArrayGlobal = [];
-        updatedTArrayGlobal = [];
-        t_array = [];
-        console.log('useeffect',tArrayGlobal, updatedTArrayGlobal, t_array)
         prevCond()
     }, [apiData])
 
