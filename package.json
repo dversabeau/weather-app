@@ -2,15 +2,11 @@
   "name": "weather-app",
   "displayName": "Weather App",
   "version": "0.1.0",
-  "author": {
-    "name": "dan",
-    "email": "dan@dan.com",
-    "url": "https://404notfound.com"
-  },
+  "author": "dan <dan@dan.com> (https://404notfound.com)",
   "description": "Ma super app",
   "email": "dversabeau@gmail.com",
   "license": "MIT",
-  "homepage": "./",
+  "homepage": "http://./",
   "main": "build/electron.js",
   "private": true,
   "dependencies": {
@@ -31,6 +27,7 @@
     "camelcase": "^6.2.1",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
     "concurrently": "^7.0.0",
+    "cors": "^2.8.5",
     "css-loader": "^6.5.1",
     "css-minimizer-webpack-plugin": "^3.2.0",
     "dotenv": "^10.0.0",
@@ -38,7 +35,9 @@
     "eslint": "^8.3.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-webpack-plugin": "^3.1.1",
+    "express": "^4.18.1",
     "file-loader": "^6.2.0",
+    "fs": "^0.0.1-security",
     "fs-extra": "^10.0.0",
     "html-webpack-plugin": "^5.5.0",
     "identity-obj-proxy": "^3.0.0",
@@ -48,6 +47,7 @@
     "mini-css-extract-plugin": "^2.4.5",
     "moment": "^2.29.3",
     "moment-timezone": "^0.5.34",
+    "nodemon": "^2.0.16",
     "postcss": "^8.4.4",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-loader": "^6.2.1",
@@ -78,6 +78,7 @@
   "scripts": {
     "w:build": "cross-env BUILD_PATH='./dist/webapp' node scripts/build.js",
     "start": "node scripts/start.js",
+    "n:start": "nodemon server.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "e:build": "chmod +x ./src-electron/build.sh && ./src-electron/build.sh && yarn build && sudo rm ./public/electron.js ./public/preload.js",
@@ -199,5 +200,12 @@
     "platforms": [
       "android"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dversabeau/weather-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dversabeau/weather-app/issues"
   }
 }
