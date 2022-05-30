@@ -13,17 +13,13 @@ function MainLayout() {
   const dispatch = useDispatch();
   const search = useSelector((state) => state.search.search)
 
-  const apiKey = process.env.REACT_APP_API_KEY;
-  const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?`
-    + `q=${search}`
-    + `&lang=fr`
-    + `&units=metric`
-    + `&appid=${apiKey}`;
+  const apiUrl = `http://localhost:3000?q=`;
 
   function getData() {
     axios
-      .get(apiUrl)
-      .then((res) => dispatch(setApiData(res.data)))
+      .get(apiUrl + search)
+      .then((res) => //dispatch(setApiData(res.data))
+       console.log(res))
       .catch((err) => console.log(err));
   }
 
